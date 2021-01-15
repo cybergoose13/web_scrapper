@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Learning Platform</title>
+<link href="/assets/black_ninja-db2fe4f1051012ab89c235cc9bf3cd5a.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+<link href="/assets/login_registration_layout-916ddce7db21df44672d9a8c81fb16aa.css" media="all" rel="stylesheet"/>
+<meta content="We supply the most rigorous, comprehensive full-stack software development training programs to meet the career goals of both aspiring developers and industry veterans." name="description"/>
+<meta content="443990580642-jj1am5qfpmoptd7410phpavpe1i89nr8.apps.googleusercontent.com" name="google-signin-client_id"/>
+<script async="" defer="" src="https://apis.google.com/js/platform.js"></script>
+</head>
+<body>
+<section class="new_login_section" id="login_main_content">
+<div id="login_container">
+<a href="http://www.codingdojo.com/"><img alt="coding_dojo_logo" id="coding_dojo_login_logo" src="/assets/coding_dojo_logo_white.png"/></a>
+<div id="sign_up_title">
+<h1>Learning Platform</h1>
+</div>
+<div id="sign_up_container">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="login_nav_tabs" role="tablist">
+<li class="active" role="presentation"><a aria-controls="login_tab" data-toggle="tab" href="#login_tab" role="tab">Login</a></li>
+<!-- <li role="presentation"><a id="signin_register_tab" href="#sign_up_tab" aria-controls="sign_up_tab" role="tab" data-toggle="tab">Register</a></li> -->
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+<div class="tab-pane active" id="login_tab" role="tabpanel">
+<h4>Welcome back! Let's get coding.</h4>
+<ul class="list-unstyled" id="login_form">
+<li>
+<input class="form-control" id="enter_email" name="email" placeholder="Email" tabindex="1" type="email" value=""/>
+<div class="checkbox">
+<label>
+<input id="login_remember" tabindex="3" type="checkbox"/> Remember Me
+                                </label>
+<span class="invalid_email hidden">Invalid email address.</span>
+<span class="error_email hidden">Enter email address.</span>
+<span class="retrieval_failed hidden">Failed to retrieve password. Please try again.</span>
+</div>
+</li>
+<li>
+<input class="form-control" id="enter_password" name="password" placeholder="Password" tabindex="2" type="password"/>
+<input name="authenticity_token" type="hidden" value="mlyCcjaQQsRAY6eRec+jlKaLU3yVZzHfrKGOjAgDSe0="/>
+<a data-target="#forgot_password_modal" data-toggle="modal" href="#" id="forgot_password_btn" tabindex="4">Forgot Password?</a>
+</li>
+<li>
+<!-- FB or Google -->
+<button class="btn btn-primary login_btn" id="login_button" tabindex="5" type="button">Login</button>
+</li>
+</ul>
+<ul id="social_media_login_form">
+<li>
+<button class="g-signin2" data-onsuccess="onSignIn"></button>
+<!-- <button type="button" class="btn btn-primary social_media_btn" id='google_btn_login'>
+                                <img src="/assets/google_icon.png" alt="google_icon">
+                                <p>Sign In With Google</p>
+                            </button> -->
+</li>
+<li>
+<button class="btn btn-primary social_media_btn" id="facebook_btn_login" type="button">
+<img alt="facebook_icon" src="/assets/facebook_icon.png"/>
+<p>Sign In With Facebook</p>
+</button>
+</li>
+</ul>
+<p class="social_media_msg">
+<a class="email_login_link" href="#">Back to login</a>
+</p>
+<p class="error_message_for_login">Oops, we can't find your email in our database. 
+                    Please email <a href="#">admissionscontact@codingdojo.com</a> for help.</p>
+</div>
+<!-- <div role="tabpanel" class="tab-pane" id="sign_up_tab">
+                    <h4>First time here? Let's get you started!</h4>
+                    <ul id="sign_up_form" class="list-unstyled ">
+                        <li>
+                            <span>First Name</span>
+                            <input type="text" class="form-control" name='first_name' id="first_name" placeholder="">
+                        </li>
+                        <li>
+                            <span>Last Name</span>
+                            <input type="text" class="form-control" name='last_name' id="last_name" placeholder="">
+                        </li>
+                        <li>
+                            <span>Email Address</span>
+                            <input type="email" class="form-control" name='email' id="email_address" placeholder="" title='Email must be valid and unique.'>
+                        </li>
+                        <li>
+                            <span>Create a Password</span>
+                            <input type="password" class="form-control" name='password' id="password" placeholder="" title='Password must be 6 or more characters.'>
+                            <input type="hidden" name="app_id" id="app_id">
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                            <p>By registering for the platform, you agree to our <a href="http://www.codingdojo.com/files/Site_Terms.pdf" target="_blank">Terms and Conditions</a>.</p>
+                            <input type="hidden" name="authenticity_token" value="mlyCcjaQQsRAY6eRec+jlKaLU3yVZzHfrKGOjAgDSe0="> 
+                            <button type="button" id="sign_up" class="btn btn-primary login_btn" data-loading-text="Signing Up">Register</button>
+                        </li>
+                    </ul>
+                
+                    <p class="error_message_for_registration">Oops, we can't find your email in our accepted students list. Please email <a href="#">admissionscontact@codingdojo.com</a> for help.</p> 
+                    <p class="error_message_for_email">Email has already been taken.</p>
+                </div> -->
+</div>
+<p class="register_info hidden">Pssst... In order to register, you'll need to use the same email that you used on your admissions application.</p>
+</div>
+</div>
+<!-- Log out notice modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade info_modal" data-backdrop="static" data-keyboard="false" id="logout_notice_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal_header">
+<h4>Logout Notice</h4>
+</div>
+<div class="modal_body">
+<p>We have detected that your account has been logged in from another computer, for security reasons we are only allowing one login session at a time so we have logged you out from this device. Email us at <a href="#">admissionscontact@codingdojo.com</a> if you think that someone else is using your account.</p>
+<a class="btn btn-primary submit_btn" data-dismiss="modal" href="#">CONTINUE</a>
+</div>
+</div>
+</div>
+</div>
+<!-- end of Log out notice modal -->
+<div class="modal fade" id="forgot_password_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<span aria-label="Close" class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal"></span>
+<div class="modal-body">
+<form action="" id="forgot_password_form">
+<p>Forgot your password?</p>
+<p>No worries, we'll send you a new one in no time.</p>
+<input name="email_address" placeholder="Email Address" type="email"/>
+<input name="authenticity_token" type="hidden" value="mlyCcjaQQsRAY6eRec+jlKaLU3yVZzHfrKGOjAgDSe0="/>
+<input class="btn btn-primary" type="submit" value="SEND"/>
+<p class="success">Your new password will be sent to your Email Address!</p>
+<p class="fail">Oops, we can't find your email in our database. <br/> Please email <a href="#">admissionscontact@codingdojo.com</a> for help.</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- Expired Access Modal  -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade info_modal expired_access_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<span aria-label="Close" class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal"></span>
+<div class="modal_header">
+<h4>Expired Access</h4>
+</div>
+<div class="modal_body">
+<p class="expired_message free_seat_message hidden">Your free access to the learning platform has expired! If you need extension for your access or have any questions, please contact <a href="#">admissionscontact@codingdojo.com</a></p>
+<p class="expired_message student_message hidden">Your program access has expired! If you have further questions or need additional support, feel free to contact your Program Success Manager.</p>
+<p class="expired_message no_access hidden">This account has expired! If you are interested to join our Onsite or Online program, click <a href="http://www.codingdojo.com/apply" target="_blank">here</a> or if you have pending application, please contact <a href="#">admissionscontact@codingdojo.com</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Expired Access Modal -->
+<!-- Alumni Portal Unauthorized Access Modal  -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade info_modal unauthorized_access_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<span aria-label="Close" class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal"></span>
+<div class="modal_header">
+<h4>Unauthorized Account</h4>
+</div>
+<div class="modal_body">
+<p class="expired_message alumni_portal_unauthorized_account">This account is not authorized to access the Alumni Portal! <br/><br/> If you believe this is an error, please contact <a href="#">admissionscontact@codingdojo.com</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Modal -->
+</section>
+</body>
+<script src="/assets/login_register_scripts-cbbfe2b83e72c21cc9e9a4e73fbc8d3c.js"></script>
+<meta content="authenticity_token" name="csrf-param">
+<meta content="mlyCcjaQQsRAY6eRec+jlKaLU3yVZzHfrKGOjAgDSe0=" name="csrf-token"/>
+<script>
+//<![CDATA[
+var AUTH_TOKEN = 'mlyCcjaQQsRAY6eRec+jlKaLU3yVZzHfrKGOjAgDSe0=';
+//]]>
+</script>
+<script>
+        $(window).on('load', function(){
+            // var social_login_twitter = ''
+
+            // if(social_login_twitter == "yes"){
+            //     // hide other sign up forms
+            //     $('#sign_up_buttons').addClass('hidden')
+            //     $('#sign_up_form').addClass('hidden')
+            //     $('#sign_up_twitter_form').removeClass('hidden')
+
+            //     $('#sign_up_twitter_form li').children("input[name=twitter_id]").val('')
+            //     $('#sign_up_twitter_form li').children("input[name=twitter_user_pic]").val('')
+            //     $('#sign_up_twitter_form li').children("input[name=twitter_user_name]").val('')
+            // }
+
+            if('' == "yes"){
+                $('.error_message_for_login').fadeIn();
+            }
+
+            var duplicate_login = '';
+
+            if(duplicate_login == "yes"){
+                $('#logout_notice_modal').modal('show');
+            }
+
+            var invalid_account = ''
+
+            if(invalid_account == "yes"){
+                alert("Sorry, this account is no longer in use.")
+            }
+        });
+
+        $(document).on('ready', function(){
+            $('title').text('Learning Platform');
+
+            if('' != ""){
+                $('body').on('keydown', function(key){
+                    navigate_location(key);
+                });
+            }
+        });
+    </script>
+</meta></html>
