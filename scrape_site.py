@@ -1,5 +1,9 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
+from selenium import webdriver
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.keys import Keys
 
 url = 'https://www.google.com'
 
