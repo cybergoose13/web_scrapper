@@ -62,6 +62,7 @@ class Scrapper:
 
     def screen_cap(self):
         full_screen= Screenshot_Clipping.Screenshot()
+        file_name = ''
         if os.path.isfile(self.get_cap_name()):
             file_name= self.get_cap_name().replace('.','(copy).')
         else:
