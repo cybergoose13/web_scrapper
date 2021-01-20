@@ -13,6 +13,9 @@ class Scrapper:
     navi_id= 'navbar'
     btn_next= 'next_button_link'
 
+    pop_up= 'modal-dialog'
+    back_drop= 'modal-backdrop'
+
     url= 'https://learn.codingdojo.com/signin'
     start_link= 'http://learn.codingdojo.com/m/2/4643/27930'
 
@@ -29,6 +32,9 @@ class Scrapper:
         else:
             mkdir(file_path)
             self.file_path= file_path
+
+    def set_start_url(self, start_link):
+        self.start_link= start_link
 
     def set_driver(self):
         self.driver= webdriver.Firefox() if self.browser == 'Firefox' else webdriver.Chrome()
@@ -56,7 +62,11 @@ class Scrapper:
 
     def screen_cap(self):
         full_screen= Screenshot_Clipping.Screenshot()
-        full_screen.full_Screenshot(self.driver, self.file_path, self.get_cap_name())
+        if os.path.isfile(self.get_cap_name()):
+            file_name= self.get_cap_name().replace('.','(copy).')
+        else:
+            file_name= self.get_cap_name()
+        full_screen.full_Screenshot(self.driver, self.file_path, file_name)
         
 
     def get_cap_name(self):
@@ -64,10 +74,20 @@ class Scrapper:
         _url= str(_url)[5:].replace('/', '_')
         return _url + '.png'
 
+    def check_modal(self):
+        modals= self.driver.find_elements_by_class_name(self.pop_up)
+        if len(modals) > 0:
+            self.driver.execute_script("$('.{modal}').attr('hidden',true)".format(modal=self.pop_up))
+            self.driver.execute_script("$('.{backdrop}').attr('hidden',true)".format(backdrop=self.back_drop))
+        else:
+            pass
+
+
     def loop_pages(self):
         sleep(2)
         btns= self.driver.find_elements_by_class_name(self.btn_next)
         while len(btns) > 0:
+            self.check_modal()
             self.remove_nav()
             self.hidden_footer('true')
             sleep(2)
@@ -79,6 +99,7 @@ class Scrapper:
             sleep(3)
             btns= self.driver.find_elements_by_class_name(self.btn_next)
             sleep(3)
+        print("Last URL Before Ending: {curl}".format(curl=self.driver.current_url))
 
 
 def browser_check():
@@ -129,6 +150,14 @@ def system_check():
         print('OS error exiting...\nPlease download correct webdriver for your OS.\nPlace the file with this script.')
         exit(0)
 
+def start_link_check(scrapper):
+    start= input('Would you like to define a starting point?\n(Y/N)\n')
+    if start == 'y' or start == 'yes' or start == 'Y' or start == 'YES':
+        start= input('Enter the URL of where to begin:\n')
+        scrapper.set_start_url(start)
+    else:
+        print('Scrapper will use its default starting point.')
+
 if __name__ == "__main__":
     browser= browser_check()
 
@@ -137,6 +166,7 @@ if __name__ == "__main__":
     file_path= input('Enter file path:\n')
     scrapper= Scrapper(username, mpass, browser)
     scrapper.set_file_path(file_path)
+    start_link_check(scrapper)
     scrapper.driver_login()
     scrapper.start()
 
